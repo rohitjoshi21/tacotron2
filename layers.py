@@ -49,6 +49,8 @@ class TacotronSTFT(torch.nn.Module):
         self.stft_fn = STFT(filter_length, hop_length, win_length)
         mel_basis = librosa.filters.mel(
             sr=sampling_rate, n_fft=filter_length, n_mels=n_mel_channels, fmin=mel_fmin, fmax=mel_fmax)
+        print(type(mel_basis))  # Should print <class 'numpy.ndarray'>
+        print(mel_basis.shape) 
         self.register_buffer('mel_basis', torch.tensor(mel_basis, dtype=torch.float32))
 
     def spectral_normalize(self, magnitudes):

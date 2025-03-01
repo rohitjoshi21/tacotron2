@@ -50,8 +50,8 @@ class TacotronSTFT(torch.nn.Module):
         mel_basisnp = librosa.filters.mel(
             sr=sampling_rate, n_fft=filter_length, n_mels=n_mel_channels, fmin=mel_fmin, fmax=mel_fmax)
         mel_basis_tensor = torch.tensor(mel_basisnp, dtype=torch.float32)
-        self.mel_basis = mel_basis_tensor
-        # self.register_buffer('mel_basis', mel_basis_tensor)
+        # self.mel_basis = mel_basis_tensor
+        self.register_buffer('mel_basis', mel_basis_tensor)
 
     def spectral_normalize(self, magnitudes):
         output = dynamic_range_compression(magnitudes)

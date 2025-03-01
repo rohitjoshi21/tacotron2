@@ -19,7 +19,7 @@ def load_filepaths_and_text(filename, split=","):
     with open(filename, encoding='utf-8') as f:
         filepaths_and_text = [line.strip().split(split,1) for line in f]
 
-    return [[f"../drive/MyDrive/colab/wav/{audiopath}", text] for audiopath, text in filepaths_and_text]
+    return [[f"/content/drive/MyDrive/colab/wav/{audiopath[:-4]}", text] for audiopath, text in filepaths_and_text]
 
 
 def to_gpu(x):

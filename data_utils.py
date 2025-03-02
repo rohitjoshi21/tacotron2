@@ -31,7 +31,7 @@ class TextMelLoader(torch.utils.data.Dataset):
         # separate filename and text
         audiopath, text = audiopath_and_text[0], audiopath_and_text[1]
         text = self.get_text(text)
-        mel = self.get_mel(f"wav/{audiopath}")
+        mel = self.get_mel(f"/content/drive/MyDrive/colab/wav/{audiopath}")
         return (text, mel)
 
     def get_mel(self, filename):

@@ -5,9 +5,17 @@ import numpy as np
 
 
 def save_figure_to_numpy(fig):
-    # save it to a numpy array.
-    data = np.asarray(fig.canvas.buffer_rgba())
+    # Ensure the figure is drawn
+    fig.canvas.draw()
+
+    # Access the renderer and convert the buffer to a numpy array
+    renderer = fig.canvas.get_renderer()
+    data = np.array(renderer.buffer_rgba())  # Get RGBA buffer data
+    data = data[..., :3]  # Remove alpha channel (optional, if you need RGB)
+    
+    # Reshape the data to match the figure's width and height
     data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+    
     return data
 
 

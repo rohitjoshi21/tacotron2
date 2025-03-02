@@ -5,7 +5,7 @@ import torch
 
 def get_mask_from_lengths(lengths):
     max_len = torch.max(lengths).item()
-    ids = torch.arange(0, max_len, device=lengths.device, dtype=torch.long)
+    ids = torch.arange(0, max_len, dtype=torch.long)
     mask = (ids < lengths.unsqueeze(1)).bool()
     return mask
 
